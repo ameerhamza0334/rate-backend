@@ -11,23 +11,26 @@ export class CustomersService {
     @InjectRepository(Customer)
     private customerRepository: Repository<Customer>,
   ) {}
-  create(createCustomerDto: CreateCustomerDto) {
-    return 'This action adds a new customer';
+  async create(
+    createCustomerDto: CreateCustomerDto,
+  ): Promise<CreateCustomerDto & Customer> {
+    return await this.customerRepository.save(createCustomerDto);
   }
 
-  findAll():Promise<Customer[]> {
-    return this.customerRepository.find();
+  async findAll(): Promise<Customer[]> {
+    return await this.customerRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} customer`;
+  async findOne(id: number): Promise<Customer> {
+    return await this.customerRepository.findOneBy({ id });
+    // return `This action returns a #${id} customer`;
   }
 
-  update(id: number, updateCustomerDto: UpdateCustomerDto) {
-    return `This action updates a #${id} customer`;
+  async update(id: number, updateCustomerDto: UpdateCustomerDto): Promise<any> {
+    return await this.customerRepository.update(id, updateCustomerDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} customer`;
+  async remove(id: number): Promise<void> {
+    await this.customerRepository.delete(id);
   }
 }

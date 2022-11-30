@@ -7,7 +7,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-@Entity()
+@Entity("customers")
 export class Customer {
   @PrimaryGeneratedColumn()
   id: number;
@@ -24,10 +24,8 @@ export class Customer {
   @Column()
   file_type: string;
 
-  @ManyToOne(() => Company, (company: Company) => company.customers)
+  @ManyToOne(() => Company, (company: Company) => company.customer)
   @JoinColumn({ name: 'company_id' })
   company: Company;
-  // @ManyToOne(type=>Company)
-  // @JoinColumn({ name: 'company_id' })
-  // company: Company;
+  
 }

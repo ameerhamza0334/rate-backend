@@ -12,5 +12,5 @@ export class Company {
   @Column()
   vat_no: string;
   @OneToMany(() => Customer, (customer: Customer) => customer.company)
-  public customers: Customer[];
+  customer: Customer[];
 }

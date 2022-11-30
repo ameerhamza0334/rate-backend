@@ -7,10 +7,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { CustomersModule } from './modules/customers/customers.module';
 import { Customer } from './modules/customers/entities/customer.entity';
+import { ConfigModule } from '@nestjs/config';
 @Module({
   imports: [
-    CompanyModule,
-    CustomersModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: '51.68.167.212',
@@ -18,9 +17,15 @@ import { Customer } from './modules/customers/entities/customer.entity';
       username: 'admin',
       password: 'root',
       database: 'rate',
-      entities: [],
-      synchronize: true,
+      // entities: [Company,Customer],
+      // synchronize: true,
       autoLoadEntities: true,
+      keepConnectionAlive:false,
+    }),
+    CompanyModule,
+    CustomersModule,
+    ConfigModule.forRoot({
+      isGlobal: true,
     }),
   ],
   controllers: [AppController],
