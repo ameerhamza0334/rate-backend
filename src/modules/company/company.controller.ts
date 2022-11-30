@@ -1,12 +1,18 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, UseInterceptors } from '@nestjs/common';
 import { CompanyService } from './company.service';
 import { Company } from './entities/company.entity';
 import { CreateCompanyDto } from './dto/create-company.dto';
+import { TransformInterceptor } from 'src/interceptors/transform.interceptor';
+import { ErrorsInterceptor } from 'src/interceptors/errors.interceptor';
+
 
 @Controller('company')
+@UseInterceptors(TransformInterceptor)
+@UseInterceptors(ErrorsInterceptor)
+
 export class CompanyController {
   constructor(private readonly companyService: CompanyService) {}
-
+  
   @Get()
   findAll(): Promise<Company[]> {
     return this.companyService.findAll();
