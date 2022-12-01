@@ -1,0 +1,14 @@
+{
+    "cash": {
+      "amount": 1432123,
+      "increment": true, 
+      "value": 2.3,
+      "progress": 0.7
+    },
+    "receivable": {
+      "amount": 213324,
+      "increment": false, 
+      "value": 3.3,
+      "progress": 0.2
+    }
+}

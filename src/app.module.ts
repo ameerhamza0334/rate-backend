@@ -1,14 +1,14 @@
-import { Ip, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CompanyModule } from './modules/company/company.module';
-import { Company } from './modules/company/entities/company.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { DataSource } from 'typeorm';
 import { CustomersModule } from './modules/customers/customers.module';
-import { Customer } from './modules/customers/entities/customer.entity';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import configuration from './modules/config/configuration';
+import { SuppliersModule } from './modules/suppliers/suppliers.module';
+import { KpiModule } from './modules/kpi/kpi.module';
+import { RevenueModule } from './modules/revenue/revenue.module';
 
 @Module({
   imports: [
@@ -16,25 +16,31 @@ import configuration from './modules/config/configuration';
       isGlobal: true,
       load: [configuration],
     }),
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: process.env.DB_HOST,
+    TypeOrmModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => ({
+        type: 'postgres',
+        host: config.get('DB_HOST'),
+     
+        port: config.get('DB_PORT'),
 
-      port: parseInt(process.env.DB_PORT),
+        username: config.get('DB_USERNAME'),
 
-      username: String(process.env.DB_USER),
+        password: config.get('DB_PASSWORD'),
 
-      password: String(process.env.DB_PASSWORD),
+        database: config.get('DB_NAME'),
 
-      database: String(process.env.DB_NAME),
-
-      // entities: [Company,Customer],
-      // synchronize: true,
-      autoLoadEntities: true,
-      keepConnectionAlive: false,
+        // entities: [Company,Customer],
+        // synchronize: true,
+        autoLoadEntities: true,
+        keepConnectionAlive: false,
+      }),
     }),
     CompanyModule,
     CustomersModule,
+    SuppliersModule,
+    KpiModule, 
+    RevenueModule
   ],
   controllers: [AppController],
   providers: [AppService],
