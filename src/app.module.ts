@@ -20,16 +20,16 @@ import { RevenueModule } from './modules/revenue/revenue.module';
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
         type: 'postgres',
-        host: config.get('DB_HOST'),
-     
-        port: config.get('DB_PORT'),
-
-        username: config.get('DB_USERNAME'),
-
-        password: config.get('DB_PASSWORD'),
-
-        database: config.get('DB_NAME'),
-
+        //host: config.get('DB_HOST'),
+     host:"localhost",
+        //port: config.get('DB_PORT'),
+port:"5432",
+       // username: config.get('DB_USERNAME'),
+username:'admin',
+       //password: config.get('DB_PASSWORD'),
+password:'root',
+       //database: config.get('DB_NAME'),
+database:'rate',
         // entities: [Company,Customer],
         // synchronize: true,
         autoLoadEntities: true,

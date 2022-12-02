@@ -40,7 +40,7 @@ AppModule = __decorate([
                     type: 'postgres',
                     host: config.get('DB_HOST'),
                     port: config.get('DB_PORT'),
-                    username: config.get('DB_USERNAME'),
+                    username: 'admin',
                     password: config.get('DB_PASSWORD'),
                     database: config.get('DB_NAME'),
                     autoLoadEntities: true,
