@@ -5,7 +5,7 @@ import { CompanyModule } from './modules/company/company.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CustomersModule } from './modules/customers/customers.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import configuration from './modules/config/configuration';
+// import configuration from './modules/config/configuration';
 import { SuppliersModule } from './modules/suppliers/suppliers.module';
 import { KpiModule } from './modules/kpi/kpi.module';
 import { RevenueModule } from './modules/revenue/revenue.module';
@@ -14,33 +14,34 @@ import { RevenueModule } from './modules/revenue/revenue.module';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [configuration],
+      // load: [configuration],
     }),
-    TypeOrmModule.forRootAsync({
-      inject: [ConfigService],
-      useFactory: (config: ConfigService) => ({
+    TypeOrmModule.forRoot({
+      // TypeOrmModule.forRootAsync({
+      // inject: [ConfigService],
+      // useFactory: (config: ConfigService) => ({
         type: 'postgres',
         //host: config.get('DB_HOST'),
-     host:"localhost",
+        host: 'localhost',
         //port: config.get('DB_PORT'),
-port:"5432",
-       // username: config.get('DB_USERNAME'),
-username:'admin',
-       //password: config.get('DB_PASSWORD'),
-password:'root',
-       //database: config.get('DB_NAME'),
-database:'rate',
+        port: 5432,
+        // username: config.get('DB_USERNAME'),
+        username: 'admin',
+        //password: config.get('DB_PASSWORD'),
+        password: 'root',
+        //database: config.get('DB_NAME'),
+        database: 'rate',
         // entities: [Company,Customer],
         // synchronize: true,
         autoLoadEntities: true,
         keepConnectionAlive: false,
-      }),
+      // }),
     }),
     CompanyModule,
     CustomersModule,
     SuppliersModule,
-    KpiModule, 
-    RevenueModule
+    KpiModule,
+    RevenueModule,
   ],
   controllers: [AppController],
   providers: [AppService],
