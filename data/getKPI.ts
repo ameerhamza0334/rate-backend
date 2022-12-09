@@ -76,3 +76,53 @@ export let kpi_perf = [
     "sortById": 1
   }
 ]
+
+export let revenues = {
+  "cash": {
+    "amount": 1432123,
+    "increment": true,
+    "value": 2.3,
+    "progress": 0.7
+  },
+  "receivable": {
+    "amount": 213324,
+    "increment": false,
+    "value": 3.3,
+    "progress": 0.2
+  }
+}
+
+export let suppliers = [
+  {
+    "name": "Nissan",
+    "supplierId": 142,
+    "amount": 1453543,
+    "notDue": 25,
+    "due": 41,
+    "overDue": 34
+  },
+  {
+    "name": "Honda",
+    "supplierId": 143,
+    "amount": 123325,
+    "notDue": 15,
+    "due": 30,
+    "overDue": 55
+  },
+  {
+    "name": "Brick Inc",
+    "supplierId": 144,
+    "amount": 43453,
+    "notDue": 50,
+    "due": 25,
+    "overDue": 25
+  },
+  {
+    "name": "Google",
+    "supplierId": 149,
+    "amount": 7934,
+    "notDue": 41,
+    "due": 41,
+    "overDue": 18
+  }
+]

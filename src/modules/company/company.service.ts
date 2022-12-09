@@ -8,7 +8,7 @@ import { Accounts, AccountsDetails } from './entities/account.entity';
 import { Flags, Tags, Users } from '../users/entities/users.entity';
 
 import { Customers } from '../customers/entities/customer.entity';
-
+import { data, kpi_perf, revenues,suppliers  } from "../../../data/getKPI";
 
 @Injectable()
 export class CompanyService {
@@ -58,5 +58,20 @@ export class CompanyService {
 
   }
 
+  async getPortfolioKPIs() {
+    return data
+  }
+
+  async getPerformanceKPIs() {
+    return kpi_perf
+  }
+
+  async getRevenues(){
+    return revenues
+  }
+
+  async getSuppliers(){
+    return suppliers
+  }
 
 }

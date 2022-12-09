@@ -37,5 +37,25 @@ export class CompanyController {
     return this.companyService.getAllSOA({ company_id: id })
   }
 
+  @Get('kpi/performance')
+  async getPerformanceKPI() {
+    return this.companyService.getPerformanceKPIs()
+  }
+
+  @Get('kpi/portfolio')
+  async getPortfolioKPI() {
+    return this.companyService.getPortfolioKPIs()
+  }
+
+  @Get("revenue/:company_id")
+  async getRevenues() {
+    return this.companyService.getRevenues()
+  }
+
+  @Get("suppliers/:company_id")
+  async getSuppliers() {
+    return this.companyService.getSuppliers()
+  }
+
 
 }

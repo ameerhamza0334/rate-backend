@@ -46,15 +46,5 @@ export class CustomersController {
     return await this.customersService.remove(+id);
   }
 
-  @Get('kpi/performance')
-  async getPerformanceKPI() {
-    return this.customersService.getPerformanceKPIs()
-  }
-
-  @Get('kpi/portfolio')
-  async getPortfolioKPI() {
-    return this.customersService.getPortfolioKPIs()
-  }
-
-
+ 
 }

@@ -4,7 +4,9 @@ import { Repository } from 'typeorm';
 import { CreateCustomerDto } from './dto/create-customer.dto';
 
 import { Customers } from './entities/customer.entity';
-import { data, kpi_perf } from "../../../data/getKPI";
+
+
+import {} from "data/getRevenue.json"
 @Injectable()
 export class CustomersService {
   constructor(
@@ -34,12 +36,5 @@ export class CustomersService {
     await this.customerRepository.delete(id);
   }
 
-  async getPortfolioKPIs() {
-    return data
-  }
-
-  async getPerformanceKPIs() {
-    return kpi_perf
-  }
 
 }
