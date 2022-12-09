@@ -8,9 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
@@ -19,42 +16,32 @@ const app_service_1 = require("./app.service");
 const company_module_1 = require("./modules/company/company.module");
 const typeorm_1 = require("@nestjs/typeorm");
 const customers_module_1 = require("./modules/customers/customers.module");
-const config_1 = require("@nestjs/config");
-const configuration_1 = __importDefault(require("./modules/config/configuration"));
-const suppliers_module_1 = require("./modules/suppliers/suppliers.module");
-const kpi_module_1 = require("./modules/kpi/kpi.module");
-const revenue_module_1 = require("./modules/revenue/revenue.module");
+const core_1 = require("@nestjs/core");
+const transform_interceptor_1 = require("./interceptors/transform.interceptor");
 let AppModule = class AppModule {
     constructor() { }
 };
 AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            config_1.ConfigModule.forRoot({
-                isGlobal: true,
-                load: [configuration_1.default],
-            }),
-            typeorm_1.TypeOrmModule.forRootAsync({
-                inject: [config_1.ConfigService],
-                useFactory: (config) => ({
-                    type: 'postgres',
-                    host: config.get('DB_HOST'),
-                    port: config.get('DB_PORT'),
-                    username: 'admin',
-                    password: config.get('DB_PASSWORD'),
-                    database: config.get('DB_NAME'),
-                    autoLoadEntities: true,
-                    keepConnectionAlive: false,
-                }),
+            typeorm_1.TypeOrmModule.forRoot({
+                type: 'postgres',
+                host: '51.68.167.212',
+                port: 5432,
+                username: 'admin',
+                password: 'root',
+                database: 'rate',
+                autoLoadEntities: true,
+                keepConnectionAlive: false,
             }),
             company_module_1.CompanyModule,
-            customers_module_1.CustomersModule,
-            suppliers_module_1.SuppliersModule,
-            kpi_module_1.KpiModule,
-            revenue_module_1.RevenueModule
+            customers_module_1.CustomersModule
         ],
         controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService],
+        providers: [app_service_1.AppService, {
+                provide: core_1.APP_INTERCEPTOR,
+                useClass: transform_interceptor_1.TransformInterceptor,
+            },],
     }),
     __metadata("design:paramtypes", [])
 ], AppModule);

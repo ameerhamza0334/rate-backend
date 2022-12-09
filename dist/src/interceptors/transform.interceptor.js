@@ -11,7 +11,21 @@ const common_1 = require("@nestjs/common");
 const operators_1 = require("rxjs/operators");
 let TransformInterceptor = class TransformInterceptor {
     intercept(context, next) {
-        return next.handle().pipe((0, operators_1.map)(data => ({ data })));
+        let { statusCode } = context.switchToHttp().getResponse();
+        return next.handle().pipe((0, operators_1.map)(data => ({
+            code: statusCode,
+            time: new Date().toISOString(),
+            path: context.switchToHttp().getRequest().url,
+            method: context.switchToHttp().getRequest().method,
+            host: context.switchToHttp().getRequest().hostname,
+            data: data
+        })), (0, operators_1.catchError)(err => {
+            let status = 500;
+            if (err.status) {
+                status = err.status;
+            }
+            throw new common_1.HttpException(err.message, status);
+        }));
     }
 };
 TransformInterceptor = __decorate([

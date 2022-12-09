@@ -8,4 +8,5 @@ export declare class CompanyController {
     findOne(id: any): Promise<Company>;
     create(createCompanyDto: CreateCompanyDto): Promise<CreateCompanyDto & Company>;
     deleteOne(id: any): Promise<void>;
+    getAlSOA(id: any): Promise<void>;
 }

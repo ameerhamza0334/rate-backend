@@ -16,7 +16,6 @@ exports.CustomersController = void 0;
 const common_1 = require("@nestjs/common");
 const customers_service_1 = require("./customers.service");
 const create_customer_dto_1 = require("./dto/create-customer.dto");
-const update_customer_dto_1 = require("./dto/update-customer.dto");
 let CustomersController = class CustomersController {
     constructor(customersService) {
         this.customersService = customersService;
@@ -35,6 +34,12 @@ let CustomersController = class CustomersController {
     }
     async remove(id) {
         return await this.customersService.remove(+id);
+    }
+    async getPerformanceKPI() {
+        return this.customersService.getPerformanceKPIs();
+    }
+    async getPortfolioKPI() {
+        return this.customersService.getPortfolioKPIs();
     }
 };
 __decorate([
@@ -62,7 +67,7 @@ __decorate([
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_customer_dto_1.UpdateCustomerDto]),
+    __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", Promise)
 ], CustomersController.prototype, "update", null);
 __decorate([
@@ -72,6 +77,18 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], CustomersController.prototype, "remove", null);
+__decorate([
+    (0, common_1.Get)('kpi/performance'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], CustomersController.prototype, "getPerformanceKPI", null);
+__decorate([
+    (0, common_1.Get)('kpi/portfolio'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], CustomersController.prototype, "getPortfolioKPI", null);
 CustomersController = __decorate([
     (0, common_1.Controller)('customers'),
     __metadata("design:paramtypes", [customers_service_1.CustomersService])

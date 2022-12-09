@@ -1,6 +1,5 @@
 import { CustomersService } from './customers.service';
 import { CreateCustomerDto } from './dto/create-customer.dto';
-import { UpdateCustomerDto } from './dto/update-customer.dto';
 import { Customer } from './entities/customer.entity';
 export declare class CustomersController {
     private readonly customersService;
@@ -8,6 +7,32 @@ export declare class CustomersController {
     create(createCustomerDto: CreateCustomerDto): Promise<CreateCustomerDto & Customer>;
     findAll(): Promise<Customer[]>;
     findOne(id: string): Promise<Customer>;
-    update(id: string, updateCustomerDto: UpdateCustomerDto): Promise<any>;
+    update(id: string, updateCustomerDto: any): Promise<any>;
     remove(id: string): Promise<void>;
+    getPerformanceKPI(): Promise<{
+        title: string;
+        percentage: number;
+        graphValues: number[];
+        increment: boolean;
+        value: number;
+        branchId: number;
+        sortById: number;
+    }[]>;
+    getPortfolioKPI(): Promise<({
+        title: string;
+        percentage: number;
+        graphValues: number[];
+        increment: boolean;
+        value: number;
+        branchId: number;
+        sortById: number;
+    } | {
+        title: string;
+        percentage: string;
+        graphValues: number[];
+        increment: boolean;
+        value: number;
+        branchId: number;
+        sortById: number;
+    })[]>;
 }

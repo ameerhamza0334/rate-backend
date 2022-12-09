@@ -1,8 +1,5 @@
-declare const _default: () => {
-    db_port: number;
-    db_host: string;
-    db_name: string;
-    db_user: string;
-    db_password: string;
-};
-export default _default;
+export declare const db_host: string;
+export declare const db_name: string;
+export declare const db_user: string;
+export declare const db_password: string;
+export declare const db_port: number;

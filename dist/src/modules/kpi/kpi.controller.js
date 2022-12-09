@@ -16,7 +16,6 @@ exports.KpiController = void 0;
 const common_1 = require("@nestjs/common");
 const kpi_service_1 = require("./kpi.service");
 const create_kpi_dto_1 = require("./dto/create-kpi.dto");
-const update_kpi_dto_1 = require("./dto/update-kpi.dto");
 let KpiController = class KpiController {
     constructor(kpiService) {
         this.kpiService = kpiService;
@@ -62,7 +61,7 @@ __decorate([
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_kpi_dto_1.UpdateKpiDto]),
+    __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", void 0)
 ], KpiController.prototype, "update", null);
 __decorate([

@@ -1,6 +1,5 @@
 import { KpiService } from './kpi.service';
 import { CreateKpiDto } from './dto/create-kpi.dto';
-import { UpdateKpiDto } from './dto/update-kpi.dto';
 export declare class KpiController {
     private readonly kpiService;
     constructor(kpiService: KpiService);
@@ -23,6 +22,6 @@ export declare class KpiController {
         sortById: number;
     })[];
     findOne(id: string): string;
-    update(id: string, updateKpiDto: UpdateKpiDto): string;
+    update(id: string, updateKpiDto: any): string;
     remove(id: string): string;
 }

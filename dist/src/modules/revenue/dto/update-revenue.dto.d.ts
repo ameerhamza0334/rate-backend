@@ -1,5 +1,4 @@
-import { CreateRevenueDto } from './create-revenue.dto';
-declare const UpdateRevenueDto_base: import("@nestjs/mapped-types").MappedType<Partial<CreateRevenueDto>>;
+declare const UpdateRevenueDto_base: any;
 export declare class UpdateRevenueDto extends UpdateRevenueDto_base {
 }
 export {};

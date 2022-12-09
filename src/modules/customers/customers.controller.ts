@@ -9,12 +9,12 @@ import {
 } from '@nestjs/common';
 import { CustomersService } from './customers.service';
 import { CreateCustomerDto } from './dto/create-customer.dto';
-import { UpdateCustomerDto } from './dto/update-customer.dto';
+
 import { Customer } from './entities/customer.entity';
 
 @Controller('customers')
 export class CustomersController {
-  constructor(private readonly customersService: CustomersService) {}
+  constructor(private readonly customersService: CustomersService) { }
 
   @Post()
   async create(
@@ -36,7 +36,7 @@ export class CustomersController {
   @Patch(':id')
   async update(
     @Param('id') id: string,
-    @Body() updateCustomerDto: UpdateCustomerDto,
+    @Body() updateCustomerDto,
   ): Promise<any> {
     return await this.customersService.update(+id, updateCustomerDto);
   }
@@ -45,4 +45,16 @@ export class CustomersController {
   async remove(@Param('id') id: string): Promise<void> {
     return await this.customersService.remove(+id);
   }
+
+  @Get('kpi/performance')
+  async getPerformanceKPI() {
+    return this.customersService.getPerformanceKPIs()
+  }
+
+  @Get('kpi/portfolio')
+  async getPortfolioKPI() {
+    return this.customersService.getPortfolioKPIs()
+  }
+
+
 }

@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const customer_entity_1 = require("./entities/customer.entity");
+const getKPI_1 = require("../../../data/getKPI");
 let CustomersService = class CustomersService {
     constructor(customerRepository) {
         this.customerRepository = customerRepository;
@@ -28,13 +29,19 @@ let CustomersService = class CustomersService {
         return await this.customerRepository.find();
     }
     async findOne(id) {
-        return await this.customerRepository.findOneBy({ id });
+        return await this.customerRepository.findOne({ id });
     }
     async update(id, updateCustomerDto) {
         return await this.customerRepository.update(id, updateCustomerDto);
     }
     async remove(id) {
         await this.customerRepository.delete(id);
+    }
+    async getPortfolioKPIs() {
+        return getKPI_1.data;
+    }
+    async getPerformanceKPIs() {
+        return getKPI_1.kpi_perf;
     }
 };
 CustomersService = __decorate([

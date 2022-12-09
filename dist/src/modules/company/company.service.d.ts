@@ -9,4 +9,5 @@ export declare class CompanyService {
     findOne(id: number): Promise<Company>;
     save(body: CreateCompanyDto): Promise<CreateCompanyDto & Company>;
     remove(id: string): Promise<void>;
+    getAllSOA(query: any): Promise<void>;
 }

@@ -11,8 +11,8 @@ import { ErrorsInterceptor } from 'src/interceptors/errors.interceptor';
 @UseInterceptors(ErrorsInterceptor)
 
 export class CompanyController {
-  constructor(private readonly companyService: CompanyService) {}
-  
+  constructor(private readonly companyService: CompanyService) { }
+
   @Get()
   findAll(): Promise<Company[]> {
     return this.companyService.findAll();
@@ -31,4 +31,11 @@ export class CompanyController {
   deleteOne(@Param('id') id): Promise<void> {
     return this.companyService.remove(id);
   }
+
+  @Get('SOA/:id')
+  getAlSOA(@Param('id') id) {
+    return this.companyService.getAllSOA({ company_id: id })
+  }
+
+
 }
