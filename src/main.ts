@@ -7,6 +7,6 @@ async function bootstrap() {
   // const configService = app.get(ConfigService);
   // const APP_PORT = configService.get<number>('APP_PORT');
   console.log("post", PORT)
-  await app.listen(PORT);
+  await app.listen(parseInt(process.env.PORT) || 3000, '0.0.0.0');;
 }
 bootstrap();
