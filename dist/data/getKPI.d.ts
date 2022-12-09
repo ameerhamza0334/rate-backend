@@ -1,4 +1,4 @@
-export declare var data: ({
+export declare let data: ({
     title: string;
     percentage: number;
     graphValues: number[];
@@ -15,3 +15,12 @@ export declare var data: ({
     branchId: number;
     sortById: number;
 })[];
+export declare let kpi_perf: {
+    title: string;
+    percentage: number;
+    graphValues: number[];
+    increment: boolean;
+    value: number;
+    branchId: number;
+    sortById: number;
+}[];

@@ -34,6 +34,9 @@ let CompanyController = class CompanyController {
     deleteOne(id) {
         return this.companyService.remove(id);
     }
+    getAlSOA(id) {
+        return this.companyService.getAllSOA({ company_id: id });
+    }
 };
 __decorate([
     (0, common_1.Get)(),
@@ -62,6 +65,13 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], CompanyController.prototype, "deleteOne", null);
+__decorate([
+    (0, common_1.Get)('SOA/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], CompanyController.prototype, "getAlSOA", null);
 CompanyController = __decorate([
     (0, common_1.Controller)('company'),
     (0, common_1.UseInterceptors)(transform_interceptor_1.TransformInterceptor),

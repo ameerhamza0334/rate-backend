@@ -1,5 +1,4 @@
 import { CreateKpiDto } from './dto/create-kpi.dto';
-import { UpdateKpiDto } from './dto/update-kpi.dto';
 export declare class KpiService {
     create(createKpiDto: CreateKpiDto): string;
     findAll(): ({
@@ -20,7 +19,7 @@ export declare class KpiService {
         sortById: number;
     })[];
     findOne(id: number): string;
-    update(id: number, updateKpiDto: UpdateKpiDto): string;
+    update(id: number, updateKpiDto: any): string;
     remove(id: number): string;
     getMockData(): ({
         title: string;

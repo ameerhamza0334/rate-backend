@@ -6,3 +6,4 @@ export declare class Company {
     vat_no: string;
     customer: Customer[];
 }
+export declare function remodelSOA(data: any): void;
