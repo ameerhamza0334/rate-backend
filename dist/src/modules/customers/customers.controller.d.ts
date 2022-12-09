@@ -1,12 +1,12 @@
 import { CustomersService } from './customers.service';
 import { CreateCustomerDto } from './dto/create-customer.dto';
-import { Customer } from './entities/customer.entity';
+import { Customers } from './entities/customer.entity';
 export declare class CustomersController {
     private readonly customersService;
     constructor(customersService: CustomersService);
-    create(createCustomerDto: CreateCustomerDto): Promise<CreateCustomerDto & Customer>;
-    findAll(): Promise<Customer[]>;
-    findOne(id: string): Promise<Customer>;
+    create(createCustomerDto: CreateCustomerDto): Promise<CreateCustomerDto & Customers>;
+    findAll(): Promise<Customers[]>;
+    findOne(id: string): Promise<void>;
     update(id: string, updateCustomerDto: any): Promise<any>;
     remove(id: string): Promise<void>;
     getPerformanceKPI(): Promise<{

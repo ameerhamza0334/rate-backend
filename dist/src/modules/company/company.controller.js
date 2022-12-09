@@ -26,7 +26,6 @@ let CompanyController = class CompanyController {
         return this.companyService.findAll();
     }
     findOne(id) {
-        return this.companyService.findOne(id);
     }
     async create(createCompanyDto) {
         return this.companyService.save(createCompanyDto);
@@ -49,7 +48,7 @@ __decorate([
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Promise)
+    __metadata("design:returntype", void 0)
 ], CompanyController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Post)(),

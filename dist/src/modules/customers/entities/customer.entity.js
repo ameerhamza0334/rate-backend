@@ -9,46 +9,63 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Customer = void 0;
+exports.Customers = void 0;
 const company_entity_1 = require("../../company/entities/company.entity");
 const typeorm_1 = require("typeorm");
-let Customer = class Customer {
+let Customers = class Customers {
 };
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)(),
+    (0, typeorm_1.PrimaryGeneratedColumn)({ type: "integer", name: "id" }),
     __metadata("design:type", Number)
-], Customer.prototype, "id", void 0);
+], Customers.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)("character varying", { name: "name", nullable: true }),
     __metadata("design:type", String)
-], Customer.prototype, "name", void 0);
+], Customers.prototype, "name", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)("character varying", { name: "address", nullable: true }),
     __metadata("design:type", String)
-], Customer.prototype, "address", void 0);
+], Customers.prototype, "address", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)("character varying", { name: "vat_no", nullable: true }),
     __metadata("design:type", String)
-], Customer.prototype, "vat_no", void 0);
+], Customers.prototype, "vatNo", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)("character varying", { name: "cr_no", nullable: true }),
     __metadata("design:type", String)
-], Customer.prototype, "cr_no", void 0);
+], Customers.prototype, "crNo", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)("character varying", { name: "place_of_supply", nullable: true }),
     __metadata("design:type", String)
-], Customer.prototype, "place_of_supply", void 0);
+], Customers.prototype, "placeOfSupply", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)("character varying", { name: "file_type", nullable: true }),
     __metadata("design:type", String)
-], Customer.prototype, "file_type", void 0);
+], Customers.prototype, "fileType", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => company_entity_1.Company, (company) => company.customer),
-    (0, typeorm_1.JoinColumn)({ name: 'company_id' }),
+    (0, typeorm_1.Column)("timestamp without time zone", { name: "created_at", nullable: true }),
+    __metadata("design:type", Date)
+], Customers.prototype, "createdAt", void 0);
+__decorate([
+    (0, typeorm_1.Column)("timestamp without time zone", { name: "updated_at", nullable: true }),
+    __metadata("design:type", Date)
+], Customers.prototype, "updatedAt", void 0);
+__decorate([
+    (0, typeorm_1.Column)("character varying", { name: "country", nullable: true }),
+    __metadata("design:type", String)
+], Customers.prototype, "country", void 0);
+__decorate([
+    (0, typeorm_1.Column)("character varying", { name: "avatar", nullable: true }),
+    __metadata("design:type", String)
+], Customers.prototype, "avatar", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => company_entity_1.Company, (company) => company.customers),
+    (0, typeorm_1.JoinColumn)([{ name: "company_id", referencedColumnName: "id" }]),
     __metadata("design:type", company_entity_1.Company)
-], Customer.prototype, "company", void 0);
-Customer = __decorate([
-    (0, typeorm_1.Entity)("customers")
-], Customer);
-exports.Customer = Customer;
+], Customers.prototype, "company", void 0);
+Customers = __decorate([
+    (0, typeorm_1.Index)("customers_pkey", ["id"], { unique: true }),
+    (0, typeorm_1.Entity)("customers", { schema: "public" })
+], Customers);
+exports.Customers = Customers;
 //# sourceMappingURL=customer.entity.js.map

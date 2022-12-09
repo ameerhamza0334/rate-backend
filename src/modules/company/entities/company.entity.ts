@@ -1,19 +1,42 @@
-import { Customer } from 'src/modules/customers/entities/customer.entity';
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
-@Entity()
+import { Customers } from 'src/modules/customers/entities/customer.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, Index } from 'typeorm';
+
+import {Accounts} from "./account.entity"
+
+@Index("company_pkey", ["id"], { unique: true })
+@Entity("company", { schema: "public" })
 export class Company {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ type: "integer", name: "id" })
   id: number;
 
-  @Column()
-  name: string;
-  @Column()
-  address: string;
-  @Column()
-  vat_no: string;
-  @OneToMany(() => Customer, (customer: Customer) => customer.company)
-  customer: Customer[];
+  @Column("character varying", { name: "name", nullable: true })
+  name: string | null;
+
+  @Column("character varying", { name: "address", nullable: true })
+  address: string | null;
+
+  @Column("character varying", { name: "vat_no", nullable: true })
+  vatNo: string | null;
+
+  @Column("timestamp without time zone", { name: "created_at", nullable: true })
+  createdAt: Date | null;
+
+  @Column("timestamp without time zone", { name: "updated_at", nullable: true })
+  updatedAt: Date | null;
+
+  @Column("character varying", { name: "cr_no", nullable: true })
+  crNo: string | null;
+
+  @Column("character varying", { name: "country", nullable: true })
+  country: string | null;
+
+  @OneToMany(() => Accounts, (accounts) => accounts.company)
+  accounts: Accounts[];
+
+  @OneToMany(() => Customers, (customers) => customers.company)
+  customers: Customers[];
 }
+
 
 
 
@@ -41,9 +64,10 @@ export function remodelSOA(data) {
     let customers = customer_ids.map((customer_id) => {
       let customer_soa = rows_data.filter(rows => rows.customer_id === customer_id)
       console.log(customer_soa)
-      let opening_dates = customer_soa.filter(x => x.description === 'Opening Balance')
-      let closing_dates = customer_soa.filter(x => x.description === 'Closing Balance')
-      
+      let total_years = customer_soa.filter(x => x.description === 'Opening Balance').map(x => x.started_date.getFullYear())
+      let years_soa = customer_soa.filter(x => total_years)
+
+
       return {}
     })
 

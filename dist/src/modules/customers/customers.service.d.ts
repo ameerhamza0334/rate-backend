@@ -1,12 +1,12 @@
 import { Repository } from 'typeorm';
 import { CreateCustomerDto } from './dto/create-customer.dto';
-import { Customer } from './entities/customer.entity';
+import { Customers } from './entities/customer.entity';
 export declare class CustomersService {
     private customerRepository;
-    constructor(customerRepository: Repository<Customer>);
-    create(createCustomerDto: CreateCustomerDto): Promise<CreateCustomerDto & Customer>;
-    findAll(): Promise<Customer[]>;
-    findOne(id: number): Promise<Customer>;
+    constructor(customerRepository: Repository<Customers>);
+    create(createCustomerDto: CreateCustomerDto): Promise<CreateCustomerDto & Customers>;
+    findAll(): Promise<Customers[]>;
+    findOne(id: number): Promise<void>;
     update(id: number, updateCustomerDto: any): Promise<any>;
     remove(id: number): Promise<void>;
     getPortfolioKPIs(): Promise<({

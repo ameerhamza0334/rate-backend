@@ -18,8 +18,8 @@ export class CompanyController {
     return this.companyService.findAll();
   }
   @Get(':id')
-  findOne(@Param('id') id): Promise<Company> {
-    return this.companyService.findOne(id);
+  findOne(@Param('id') id){
+    // return this.companyService.findOne(id);
   }
   @Post()
   async create(

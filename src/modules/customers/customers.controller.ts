@@ -10,7 +10,7 @@ import {
 import { CustomersService } from './customers.service';
 import { CreateCustomerDto } from './dto/create-customer.dto';
 
-import { Customer } from './entities/customer.entity';
+import { Customers } from './entities/customer.entity';
 
 @Controller('customers')
 export class CustomersController {
@@ -19,18 +19,18 @@ export class CustomersController {
   @Post()
   async create(
     @Body() createCustomerDto: CreateCustomerDto,
-  ): Promise<CreateCustomerDto & Customer> {
+  ): Promise<CreateCustomerDto & Customers> {
     return await this.customersService.create(createCustomerDto);
   }
 
   @Get()
-  async findAll(): Promise<Customer[]> {
+  async findAll(): Promise<Customers[]> {
     return await this.customersService.findAll();
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string): Promise<Customer> {
-    return await this.customersService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    // return await this.customersService.findOne(+id);
   }
 
   @Patch(':id')

@@ -27,7 +27,6 @@ let CustomersController = class CustomersController {
         return await this.customersService.findAll();
     }
     async findOne(id) {
-        return await this.customersService.findOne(+id);
     }
     async update(id, updateCustomerDto) {
         return await this.customersService.update(+id, updateCustomerDto);

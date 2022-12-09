@@ -18,6 +18,7 @@ const typeorm_1 = require("@nestjs/typeorm");
 const customers_module_1 = require("./modules/customers/customers.module");
 const core_1 = require("@nestjs/core");
 const transform_interceptor_1 = require("./interceptors/transform.interceptor");
+const users_module_1 = require("./modules/users/users.module");
 let AppModule = class AppModule {
     constructor() { }
 };
@@ -31,11 +32,13 @@ AppModule = __decorate([
                 username: 'admin',
                 password: 'root',
                 database: 'rate',
+                logging: true,
                 autoLoadEntities: true,
                 keepConnectionAlive: false,
             }),
             company_module_1.CompanyModule,
-            customers_module_1.CustomersModule
+            customers_module_1.CustomersModule,
+            users_module_1.UsersModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService, {

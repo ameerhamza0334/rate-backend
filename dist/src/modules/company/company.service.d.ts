@@ -6,8 +6,11 @@ export declare class CompanyService {
     constructor(companyRepository: Repository<Company>);
     getHello(): string;
     findAll(): Promise<Company[]>;
-    findOne(id: number): Promise<Company>;
+    findOne(id: number): void;
     save(body: CreateCompanyDto): Promise<CreateCompanyDto & Company>;
     remove(id: string): Promise<void>;
-    getAllSOA(query: any): Promise<void>;
+    getAllSOA(query: any): Promise<{
+        entities: Company[];
+        raw: any[];
+    }>;
 }

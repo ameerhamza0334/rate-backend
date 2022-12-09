@@ -12,30 +12,52 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.remodelSOA = exports.Company = void 0;
 const customer_entity_1 = require("../../customers/entities/customer.entity");
 const typeorm_1 = require("typeorm");
+const account_entity_1 = require("./account.entity");
 let Company = class Company {
 };
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)(),
+    (0, typeorm_1.PrimaryGeneratedColumn)({ type: "integer", name: "id" }),
     __metadata("design:type", Number)
 ], Company.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)("character varying", { name: "name", nullable: true }),
     __metadata("design:type", String)
 ], Company.prototype, "name", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)("character varying", { name: "address", nullable: true }),
     __metadata("design:type", String)
 ], Company.prototype, "address", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)("character varying", { name: "vat_no", nullable: true }),
     __metadata("design:type", String)
-], Company.prototype, "vat_no", void 0);
+], Company.prototype, "vatNo", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => customer_entity_1.Customer, (customer) => customer.company),
+    (0, typeorm_1.Column)("timestamp without time zone", { name: "created_at", nullable: true }),
+    __metadata("design:type", Date)
+], Company.prototype, "createdAt", void 0);
+__decorate([
+    (0, typeorm_1.Column)("timestamp without time zone", { name: "updated_at", nullable: true }),
+    __metadata("design:type", Date)
+], Company.prototype, "updatedAt", void 0);
+__decorate([
+    (0, typeorm_1.Column)("character varying", { name: "cr_no", nullable: true }),
+    __metadata("design:type", String)
+], Company.prototype, "crNo", void 0);
+__decorate([
+    (0, typeorm_1.Column)("character varying", { name: "country", nullable: true }),
+    __metadata("design:type", String)
+], Company.prototype, "country", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => account_entity_1.Accounts, (accounts) => accounts.company),
     __metadata("design:type", Array)
-], Company.prototype, "customer", void 0);
+], Company.prototype, "accounts", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => customer_entity_1.Customers, (customers) => customers.company),
+    __metadata("design:type", Array)
+], Company.prototype, "customers", void 0);
 Company = __decorate([
-    (0, typeorm_1.Entity)()
+    (0, typeorm_1.Index)("company_pkey", ["id"], { unique: true }),
+    (0, typeorm_1.Entity)("company", { schema: "public" })
 ], Company);
 exports.Company = Company;
 function remodelSOA(data) {
@@ -59,8 +81,8 @@ function remodelSOA(data) {
         let customers = customer_ids.map((customer_id) => {
             let customer_soa = rows_data.filter(rows => rows.customer_id === customer_id);
             console.log(customer_soa);
-            let opening_dates = customer_soa.filter(x => x.description === 'Opening Balance');
-            let closing_dates = customer_soa.filter(x => x.description === 'Closing Balance');
+            let total_years = customer_soa.filter(x => x.description === 'Opening Balance').map(x => x.started_date.getFullYear());
+            let years_soa = customer_soa.filter(x => total_years);
             return {};
         });
         console.log(customers);

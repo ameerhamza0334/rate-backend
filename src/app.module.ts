@@ -8,6 +8,7 @@ import { CustomersModule } from './modules/customers/customers.module';
 
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { TransformInterceptor } from './interceptors/transform.interceptor';
+import { UsersModule } from './modules/users/users.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { TransformInterceptor } from './interceptors/transform.interceptor';
       password: 'root',
       // database: db_name,
       database: 'rate',
+      logging: true,
       // entities: [Company,Customer],
       // synchronize: true,
       autoLoadEntities: true,
@@ -34,7 +36,8 @@ import { TransformInterceptor } from './interceptors/transform.interceptor';
       // }),
     }),
     CompanyModule,
-    CustomersModule
+    CustomersModule,
+    UsersModule
   ],
   controllers: [AppController],
   providers: [AppService, {

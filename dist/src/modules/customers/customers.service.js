@@ -29,7 +29,6 @@ let CustomersService = class CustomersService {
         return await this.customerRepository.find();
     }
     async findOne(id) {
-        return await this.customerRepository.findOne({ id });
     }
     async update(id, updateCustomerDto) {
         return await this.customerRepository.update(id, updateCustomerDto);
@@ -46,7 +45,7 @@ let CustomersService = class CustomersService {
 };
 CustomersService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, typeorm_1.InjectRepository)(customer_entity_1.Customer)),
+    __param(0, (0, typeorm_1.InjectRepository)(customer_entity_1.Customers)),
     __metadata("design:paramtypes", [typeorm_2.Repository])
 ], CustomersService);
 exports.CustomersService = CustomersService;
