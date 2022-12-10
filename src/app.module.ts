@@ -16,7 +16,7 @@ import { UsersModule } from './modules/users/users.module';
       // TypeOrmModule.forRootAsync({
       // inject: [ConfigService],
       // useFactory: (config: ConfigService) => ({
-      
+
       type: 'postgres',
       // host: db_host,
       host: '51.68.167.212',

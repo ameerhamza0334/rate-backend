@@ -45,6 +45,5 @@ export class CustomersController {
   async remove(@Param('id') id: string): Promise<void> {
     return await this.customersService.remove(+id);
   }
-
  
 }

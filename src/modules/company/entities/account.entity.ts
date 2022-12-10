@@ -25,6 +25,24 @@ export class Accounts {
     @Column("character varying", { name: "currency", default: () => "'SAR'" })
     currency: string;
 
+    @Column("character varying", { name: "opening_balance", nullable: true })
+    openingBalance: string;
+
+    @Column("character varying", { name: "closing_balance", nullable: true })
+    closingBalance: string;
+
+    @Column("timestamp without time zone", { name: "start_date", nullable: true })
+    startDate: Date | null;
+
+    @Column("timestamp without time zone", { name: "end_date", nullable: true })
+    endDate: Date | null;
+
+    @Column("integer", { name: "total_debit", nullable: true })
+    totalDebit: number | null
+
+    @Column("integer", { name: "total_credit", nullable: true })
+    totalCredit: number | null
+
     @ManyToOne(() => Company, (company) => company.accounts)
     @JoinColumn([{ name: "company_id", referencedColumnName: "id" }])
     company: Company;

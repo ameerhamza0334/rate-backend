@@ -51,6 +51,8 @@ export class Customers {
   @JoinColumn([{ name: "company_id", referencedColumnName: "id" }])
   company: Company;
   
+  @OneToMany(() => Invoices, (invoices) => invoices.customer)
+  
   invoices: Invoices[];
 }
 

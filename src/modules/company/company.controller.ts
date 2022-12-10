@@ -3,12 +3,11 @@ import { CompanyService } from './company.service';
 import { Company } from './entities/company.entity';
 import { CreateCompanyDto } from './dto/create-company.dto';
 import { TransformInterceptor } from 'src/interceptors/transform.interceptor';
-import { ErrorsInterceptor } from 'src/interceptors/errors.interceptor';
 
 
 @Controller('company')
 @UseInterceptors(TransformInterceptor)
-@UseInterceptors(ErrorsInterceptor)
+
 
 export class CompanyController {
   constructor(private readonly companyService: CompanyService) { }
@@ -18,7 +17,7 @@ export class CompanyController {
     return this.companyService.findAll();
   }
   @Get(':id')
-  findOne(@Param('id') id){
+  findOne(@Param('id') id) {
     // return this.companyService.findOne(id);
   }
   @Post()
@@ -55,6 +54,11 @@ export class CompanyController {
   @Get("suppliers/:company_id")
   async getSuppliers() {
     return this.companyService.getSuppliers()
+  }
+
+  @Get('invoices/:id')
+  getAllInvoices(@Param('id') id) {
+    return this.companyService.getAllInvoices({ company_id: id })
   }
 
 
